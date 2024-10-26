@@ -1,0 +1,2 @@
+apple_id "your_apple_id@example.com"
+app_identifier "com.krausefx.flutterflashtemplate"  # Replace with your iOS bundle ID

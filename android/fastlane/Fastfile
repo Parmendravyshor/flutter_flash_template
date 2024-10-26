@@ -1,0 +1,23 @@
+default_platform(:android)
+
+platform :android do
+  desc "Run Android tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build Android APK"
+  lane :build do
+    gradle(task: "assembleRelease")
+  end
+
+  desc "Deploy to Firebase App Distribution"
+  lane :deploy do
+    build
+    firebase_app_distribution(
+      app: "<YOUR_FIREBASE_APP_ID>",
+      groups: "testers",
+      apk_path: "./build/app/outputs/flutter-apk/app-release.apk"
+    )
+  end
+end

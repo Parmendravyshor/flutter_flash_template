@@ -1,0 +1,22 @@
+platform :ios do
+    desc "Run iOS tests"
+    lane :test do
+      scan
+    end
+  
+    desc "Build iOS App"
+    lane :build do
+      gym(scheme: "Runner")
+    end
+  
+    desc "Deploy to Firebase"
+    lane :deploy do
+      build
+      firebase_app_distribution(
+        app: "<YOUR_FIREBASE_APP_ID>",  # Firebase app ID
+        groups: "testers",  # Tester group
+        ipa_path: "./build/ios/ipa/app.ipa"
+      )
+    end
+  end
+  
